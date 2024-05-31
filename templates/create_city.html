@@ -1,0 +1,39 @@
+<div style="margin: 5%;">
+<form action="{{url_for('create_city')}}" method="POST">
+    <label for="city_name">City name</label>
+    <input type="text" name="city_name">
+    <br>
+    <br>
+    <label for="about_city">About city</label>
+    <input type="text" name="about_city">
+    <br><br>
+    <button type="submit">Save</button>
+</form>
+</div>
+
+<table style="border: solid; margin: 5%;">
+
+{%for n in cities %}
+
+<tr> 
+    <td style="background-color: aqua;" >   
+        {{n}}
+    </td>
+    <form action="{{url_for('change_city')}}" method="POST">
+    <td>
+        <input type="text" value="{{cities[n]}}">
+    </td>
+    <td>
+        <button><a href="{{url_for('change_city', name=n)}}">X</a></button>
+    </td>
+    </form>
+    <td>
+        <button><a href="{{url_for('delete_city', name=n)}}">X</a></button>
+    </td>
+    
+</tr>
+
+{% endfor %}
+</table>
+
+<a href="{{url_for('index')}}">Home</a>
